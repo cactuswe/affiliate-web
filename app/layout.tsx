@@ -1,5 +1,5 @@
 import './globals.css';
-import { ToastProvider } from '../components/ui/Toast';
+import ClientProviders from '@/components/ClientProviders';
 
 export const metadata = {
   title: 'Affiliate Web',
@@ -10,9 +10,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className="min-h-screen flex items-center justify-center">
-        <ToastProvider>
+        <ClientProviders>
           <main className="w-full max-w-md mx-auto p-6">{children}</main>
-        </ToastProvider>
+        </ClientProviders>
       </body>
     </html>
   );

@@ -1,43 +1,43 @@
-:root {
-	--radius: 0.5rem;
-}
-
-html, body { height: 100%; }
-body {
-	@apply bg-white text-slate-900 antialiased;
-}
-
-/* Dark mode support */
-:root.dark {
-	--bg: #0b1020;
-}
-
-/* Basic utility overrides */
-img { display: block; max-width: 100%; }
-input, textarea, button { font: inherit; }
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Basdetaljer så det ser okej ut även utan extra UI-kit */
-:root { color-scheme: light dark; }
-body { @apply bg-white text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100; }
-a { @apply underline underline-offset-4; }
-:root {
-	--radius: 0.5rem;
-}
+:root { --radius: 0.5rem; }
 
 html, body { height: 100%; }
+/* Make background full-bleed, remove scroll on product pages by default
+	Body remains scrollable only if a child explicitly overflows. This
+	helps avoid white curtains on some laptops while keeping accessibility. */
 body {
-	@apply bg-white text-slate-900 antialiased;
+  @apply bg-amber-50 text-zinc-900 antialiased min-h-screen;
+  background-image: radial-gradient(circle at 10% 10%, rgba(255,245,235,0.6), transparent 10%),
+						  radial-gradient(circle at 90% 90%, rgba(255,238,210,0.6), transparent 12%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Dark mode support */
-:root.dark {
-	--bg: #0b1020;
-}
+/* Remove default scrollbars on the html element only when a product uses a centered
+	fixed-height layout. We keep body scroll enabled but ensure the root background
+	is visible edge-to-edge. */
+html { overflow-y: auto; }
+
+/* Utility: full-bleed container for pages that want edge-to-edge BG */
+.full-bleed-bg { min-height: 100vh; width: 100%; }
 
 /* Basic utility overrides */
 img { display: block; max-width: 100%; }
 input, textarea, button { font: inherit; }
+
+/* Dark mode support */
+:root.dark { --bg: #0b1020; }
+
+/* Small animations */
+.fade-in { animation: fadeIn 420ms ease both; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+.btn-soft { transition: transform 160ms ease, box-shadow 160ms ease; }
+.btn-soft:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(15,23,42,0.12); }
+
+/* Accessibility helpers */
+a:focus, button:focus, input:focus, textarea:focus { outline: 3px solid rgba(99,102,241,0.12); outline-offset: 3px; }
