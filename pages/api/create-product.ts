@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { toSlug } from '../../lib/slug';
+import { toSlug } from '../../lib/slug-util';
 
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || '';
 const OWNER = process.env.GITHUB_OWNER!;

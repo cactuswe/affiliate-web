@@ -1,4 +1,6 @@
 import './globals.css';
+import Navbar from '../components/layout/Navbar';
+import { ToastProvider } from '../components/ui/Toast';
 
 export const metadata = {
   title: 'Affiliate Web',
@@ -7,20 +9,15 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="sv">
-      <body style={{ fontFamily: 'system-ui, sans-serif', margin: 0 }}>
-        <header style={{ padding: '16px', borderBottom: '1px solid #eee' }}>
-          <a href="/" style={{ textDecoration: 'none', color: 'black', fontWeight: 700 }}>
-            Affiliate Web
-          </a>
-          <a href="/admin" style={{ float: 'right', textDecoration: 'none' }}>Admin</a>
-        </header>
-        <main style={{ maxWidth: 900, margin: '0 auto', padding: '24px' }}>
-          {children}
-        </main>
-        <footer style={{ padding: '24px', borderTop: '1px solid #eee', fontSize: 12, color: '#555' }}>
-          As an Amazon Associate I earn from qualifying purchases.
-        </footer>
+    <html lang="en">
+      <body className="min-h-screen flex flex-col">
+        <ToastProvider>
+          <Navbar />
+          <main className="flex-1 max-w-4xl w-full mx-auto p-6">{children}</main>
+          <footer className="border-t text-sm text-slate-600 py-6">
+            <div className="max-w-4xl mx-auto px-4">As an Amazon Associate I earn from qualifying purchases.</div>
+          </footer>
+        </ToastProvider>
       </body>
     </html>
   );
