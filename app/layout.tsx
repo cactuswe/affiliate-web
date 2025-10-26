@@ -1,5 +1,5 @@
 import './globals.css';
-import ClientProviders from '@/components/ClientProviders';
+import ClientProviders from '../components/ClientProviders';
 
 export const metadata = {
   title: 'Affiliate Web',
