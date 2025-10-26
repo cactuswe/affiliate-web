@@ -1,7 +1,29 @@
+:root {
+	--radius: 0.5rem;
+}
+
+html, body { height: 100%; }
+body {
+	@apply bg-white text-slate-900 antialiased;
+}
+
+/* Dark mode support */
+:root.dark {
+	--bg: #0b1020;
+}
+
+/* Basic utility overrides */
+img { display: block; max-width: 100%; }
+input, textarea, button { font: inherit; }
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Basdetaljer så det ser okej ut även utan extra UI-kit */
+:root { color-scheme: light dark; }
+body { @apply bg-white text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100; }
+a { @apply underline underline-offset-4; }
 :root {
 	--radius: 0.5rem;
 }
