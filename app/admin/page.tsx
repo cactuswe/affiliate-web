@@ -17,7 +17,7 @@ export default function AdminPage() {
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
-    setStatus('Skickar...');
+  setStatus('Sending...');
     const res = await fetch('/api/create-product', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'X-Admin-Auth': password },
@@ -25,37 +25,37 @@ export default function AdminPage() {
     });
     if (res.ok) {
       const data = await res.json();
-      setStatus(`Klart: /${data.slug}`);
+  setStatus(`Done: /${data.slug}`);
       setTitle(''); setImage(''); setAffiliateUrl(''); setDescription('');
     } else {
       const t = await res.text();
-      setStatus(`Fel: ${res.status} ${t}`);
+  setStatus(`Error: ${res.status} ${t}`);
     }
   }
 
   return (
     <div>
-      <h1>Create new product</h1>
+  <h1>Create new product</h1>
       <form onSubmit={submit} style={{ display: 'grid', gap: 12, maxWidth: 640 }}>
-        <label>Password (required for each action)
+  <label>Password (required for each action)
           <input type="password" value={password} onChange={e => setPassword(e.target.value)} required
            style={{ width: '100%', padding: 10, border: '1px solid #ccc', borderRadius: 6 }} />
         </label>
-        <label>Title
+  <label>Title
           <input value={title} onChange={e => setTitle(e.target.value)} required
            style={{ width: '100%', padding: 10, border: '1px solid #ccc', borderRadius: 6 }} />
         </label>
-        <label>Image URL
+  <label>Image URL
           <input value={image} onChange={e => setImage(e.target.value)} required
            placeholder="https://..."
            style={{ width: '100%', padding: 10, border: '1px solid #ccc', borderRadius: 6 }} />
         </label>
-        <label>Affiliate URL (Amazon)
+  <label>Affiliate URL (Amazon)
           <input value={affiliateUrl} onChange={e => setAffiliateUrl(e.target.value)} required
            placeholder="https://www.amazon.se/dp/XXXX/?tag=..."
            style={{ width: '100%', padding: 10, border: '1px solid #ccc', borderRadius: 6 }} />
         </label>
-        <label>Description
+  <label>Description
           <textarea value={description} onChange={e => setDescription(e.target.value)} rows={6}
            style={{ width: '100%', padding: 10, border: '1px solid #ccc', borderRadius: 6 }} />
         </label>

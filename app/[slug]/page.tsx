@@ -27,9 +27,9 @@ export async function generateStaticParams() {
 export default function ProductPage({ params }: { params: { slug: string } }) {
   const p = getProductBySlug(params.slug);
   if (!p) return notFound();
-  const tag = process.env.AMAZON_TAG || '';
-  const url = canonicalAmazonUrl(p.affiliateUrl, tag);
-  const trust = softTrustLine(p.title, (p as any).category);
+    const tag = process.env.AMAZON_TAG || '';
+    const url = canonicalAmazonUrl(p.affiliateUrl, tag);
+    const trust = softTrustLine(p.title, (p as any).category);
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -44,14 +44,15 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
     <div style={styles.page}>
       <div style={styles.container}>
         <article style={styles.card}>
-          <div style={styles.imgWrap}>
-            <img src={p.image || '/placeholder.jpg'} alt={p.title} style={styles.img} />
-          </div>
+            <div style={styles.imgWrap}>
+              <img src={p.image || '/placeholder.jpg'} alt={p.title} style={styles.img} loading="lazy" />
+            </div>
           <h1 style={styles.h1}>{p.title}</h1>
           {p.description && <p style={styles.desc}>{p.description}</p>}
-          {(p as any).priceHint && <p style={styles.price}>Cirka pris på Amazon: {(p as any).priceHint}</p>}
-          <a href={url} rel="nofollow noopener" target="_blank" style={styles.cta}>Visa på Amazon →</a>
-          <div style={styles.note}>Amazon affiliate-länk – kuraterad rekommendation</div>
+          {(p as any).priceHint && <p style={styles.price}>Approx. price on Amazon: {(p as any).priceHint}</p>}
+            <a href={url} rel="nofollow noopener noreferrer" target="_blank" style={styles.cta} aria-label={`Open ${p.title} on Amazon`}>Open on Amazon</a>
+            <div style={styles.note}>Amazon affiliate link, curated recommendation</div>
+            <div style={{ fontSize: 13, color: '#555', marginTop: 8 }}>We test and pick items we trust — quick, simple recommendations.</div>
           <div style={styles.trust}>{trust}</div>
         </article>
       </div>

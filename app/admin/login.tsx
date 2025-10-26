@@ -14,8 +14,8 @@ export default function AdminLogin({ onOk }: { onOk: () => void }) {
       headers: { 'Content-Type': 'application/json', 'X-Admin-Auth': pw },
       body: JSON.stringify({ _ping: true })
     });
-    if (res.status === 204) onOk();
-    else setErr('Fel lösenord.');
+  if (res.status === 204) onOk();
+  else setErr('Wrong password.');
   };
 
   return (
