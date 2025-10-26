@@ -1,6 +1,9 @@
 import { getAllProducts, getProductBySlug } from '../../lib/products';
 import { withAmazonTag } from '../../lib/amazon';
 
+// Important for static export: only build the slugs we list here
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   const products = getAllProducts();
   return products.map((p) => ({ slug: p.slug }));
