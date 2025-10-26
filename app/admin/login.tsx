@@ -23,12 +23,12 @@ export default function AdminLogin({ onOk }: { onOk: () => void }) {
       <h2>Admin login</h2>
       <input
         type="password"
-        placeholder="Lösenord"
+        placeholder="Password"
         value={pw}
         onChange={(e) => setPw(e.target.value)}
         style={{ width: '100%', padding: 10, border: '1px solid #ccc', borderRadius: 6 }}
       />
-      <button type="submit" style={{ marginTop: 12, padding: '10px 14px' }}>Logga in</button>
+      <button type="submit" style={{ marginTop: 12, padding: '10px 14px' }}>Sign in</button>
       {err && <div style={{ color: 'crimson', marginTop: 8 }}>{err}</div>}
     </form>
   );

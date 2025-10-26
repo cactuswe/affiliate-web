@@ -2,7 +2,7 @@ import './globals.css';
 
 export const metadata = {
   title: 'Affiliate Web',
-  description: 'Snabb bridge-sida för affiliate-produkter'
+  description: 'Fast bridge site for affiliate products'
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -19,7 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
         </main>
         <footer style={{ padding: '24px', borderTop: '1px solid #eee', fontSize: 12, color: '#555' }}>
-          Som Amazon-partner tjänar jag provision på kvalificerade köp.
+          As an Amazon Associate I earn from qualifying purchases.
         </footer>
       </body>
     </html>

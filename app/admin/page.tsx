@@ -35,32 +35,32 @@ export default function AdminPage() {
 
   return (
     <div>
-      <h1>Skapa ny produkt</h1>
+      <h1>Create new product</h1>
       <form onSubmit={submit} style={{ display: 'grid', gap: 12, maxWidth: 640 }}>
-        <label>Lösenord (krävs för varje åtgärd)
+        <label>Password (required for each action)
           <input type="password" value={password} onChange={e => setPassword(e.target.value)} required
            style={{ width: '100%', padding: 10, border: '1px solid #ccc', borderRadius: 6 }} />
         </label>
-        <label>Titel
+        <label>Title
           <input value={title} onChange={e => setTitle(e.target.value)} required
            style={{ width: '100%', padding: 10, border: '1px solid #ccc', borderRadius: 6 }} />
         </label>
-        <label>Bild-URL
+        <label>Image URL
           <input value={image} onChange={e => setImage(e.target.value)} required
            placeholder="https://..."
            style={{ width: '100%', padding: 10, border: '1px solid #ccc', borderRadius: 6 }} />
         </label>
-        <label>Affiliate-länk (Amazon)
+        <label>Affiliate URL (Amazon)
           <input value={affiliateUrl} onChange={e => setAffiliateUrl(e.target.value)} required
            placeholder="https://www.amazon.se/dp/XXXX/?tag=..."
            style={{ width: '100%', padding: 10, border: '1px solid #ccc', borderRadius: 6 }} />
         </label>
-        <label>Beskrivning
+        <label>Description
           <textarea value={description} onChange={e => setDescription(e.target.value)} rows={6}
            style={{ width: '100%', padding: 10, border: '1px solid #ccc', borderRadius: 6 }} />
         </label>
         <button type="submit" style={{ padding: '12px 16px', borderRadius: 6 }}>
-          Skapa
+          Create
         </button>
       </form>
       {status && <p style={{ marginTop: 12 }}>{status}</p>}
