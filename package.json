@@ -3,10 +3,10 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "dev": "next dev",
+    "prebuild": "if [ -d .vercel/output ]; then echo 'FOUND .vercel/output -> failing'; ls -la .vercel || true; exit 2; fi",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "next dev",
+    "start": "next start"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
