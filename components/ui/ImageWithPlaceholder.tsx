@@ -12,6 +12,23 @@ export default function ImageWithPlaceholder({ src, alt, className, lqip }:
     setLoaded(false);
   }, [src]);
 
+  // If the image is hosted on Amazon, route via our server-side proxy to avoid
+  // hotlinking/referrer blocks some Amazon endpoints apply.
+  useEffect(() => {
+    try {
+      const url = new URL(src);
+      const amazonHosts = ['m.media-amazon.com', 'images-na.ssl-images-amazon.com', 'images-eu.ssl-images-amazon.com', 'images.amazon.com'];
+      if (amazonHosts.includes(url.hostname)) {
+        // encodeURIComponent to safely pass through query
+        setSrcState(`/api/proxy-image?url=${encodeURIComponent(src)}`);
+        return;
+      }
+    } catch (e) {
+      // ignore parse errors
+    }
+    setSrcState(src);
+  }, [src]);
+
   return (
     <div className={className} style={{ position: 'relative', overflow: 'hidden' }}>
       {/* low-quality placeholder */}
