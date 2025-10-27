@@ -5,6 +5,7 @@ export default function ImageWithPlaceholder({ src, alt, className, lqip }:
   { src: string; alt?: string; className?: string; lqip?: string }){
   const [loaded, setLoaded] = useState(false);
   const [show, setShow] = useState(false);
+  const [srcState, setSrcState] = useState(src);
 
   useEffect(() => {
     setShow(false);
@@ -21,10 +22,11 @@ export default function ImageWithPlaceholder({ src, alt, className, lqip }:
       }} />
 
       <img
-        src={src}
+        src={srcState}
         alt={alt}
         loading="lazy"
         onLoad={() => { setLoaded(true); setTimeout(()=>setShow(true), 40); }}
+        onError={() => { if (srcState !== '/placeholder.jpg') setSrcState('/placeholder.jpg'); }}
         style={{
           width: '100%', height: 'auto', display: 'block', opacity: show ? 1 : 0,
           transition: 'opacity 420ms ease, transform 420ms ease', transform: show ? 'none' : 'translateY(6px)'

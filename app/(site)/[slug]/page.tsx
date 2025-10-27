@@ -44,26 +44,47 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
   return (
     <div style={styles.page}>
       <div style={styles.container}>
-        <article style={styles.card}>
-            <div style={styles.imgWrap}>
-              <ImageWithPlaceholder src={p.image || '/placeholder.jpg'} alt={p.title} lqip={(p as any).lqip} />
+        <article style={{ ...styles.card, display: 'flex', gap: 20, alignItems: 'flex-start', flexDirection: 'column' }}>
+          <div style={{ display: 'flex', gap: 20, alignItems: 'flex-start', flexDirection: 'column' }}>
+            <div style={{ width: '100%' }}>
+              <div style={{ display: 'block' }}>
+                <div style={{ maxWidth: 520, margin: '0 auto' }}>
+                  <div style={styles.imgWrap}>
+                    <div style={{ width: '100%' }}>
+                      <ImageWithPlaceholder src={p.image || '/placeholder.jpg'} alt={p.title} lqip={(p as any).lqip} />
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          <h1 style={styles.h1}>{p.title}</h1>
-          {p.description && <p style={styles.desc}>{p.description}</p>}
-          {(p as any).priceHint && <p style={styles.price}>Price: {(p as any).priceHint} • {((p as any).freeShipping) ? 'Free shipping' : 'Shipping may apply'}</p>}
-            <a href={url} rel="nofollow noopener noreferrer" target="_blank" style={styles.cta} aria-label={`Open ${p.title} on Amazon`}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden style={{display:'block'}}>
-                <path d="M3 12h18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M12 3v18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" opacity="0.9" />
-              </svg>
-              Buy on Amazon
-            </a>
-            <div style={styles.note}>
-              <strong style={{ background: '#eef6ff', padding: '4px 8px', borderRadius: 999, fontSize: 12, display: 'inline-block' }}>We test this</strong>
-              <div style={{ marginTop: 8, fontSize: 13, color: '#555' }}>Curated by Noah's Finds</div>
+
+            <div style={{ width: '100%' }}>
+              <h1 style={styles.h1}>{p.title}</h1>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                {p.description && <p style={{ ...styles.desc, fontSize: 15, margin: 0 }}>{p.description}</p>}
+
+                <div style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap' }}>
+                  {(p as any).priceHint && <div style={{ ...styles.price, margin: 0 }}>Price: {(p as any).priceHint} • {((p as any).freeShipping) ? 'Free shipping' : 'Shipping may apply'}</div>}
+
+                  <a href={url} rel="nofollow noopener noreferrer" target="_blank" style={{ ...styles.cta, padding: '8px 12px', fontSize: 13, borderRadius: 8 }} aria-label={`Open ${p.title} on Amazon`}>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden style={{display:'block'}}>
+                      <path d="M3 12h18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M12 3v18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" opacity="0.9" />
+                    </svg>
+                    <span style={{ marginLeft: 6 }}>Buy on Amazon</span>
+                  </a>
+
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                    <div style={{ background: '#eef6ff', display: 'inline-block', padding: '4px 8px', borderRadius: 999, fontSize: 11, color: '#0b5bd7' }}>We test this</div>
+                    <div style={{ fontSize: 12, color: '#666' }}>Curated by Noah's Finds</div>
+                  </div>
+                </div>
+
+                <div style={styles.trust}>{trust}</div>
+              </div>
             </div>
-            <div style={{ fontSize: 13, color: '#555', marginTop: 8 }}>{trust}</div>
-          <div style={styles.trust}>{trust}</div>
+          </div>
         </article>
       </div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
